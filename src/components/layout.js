@@ -26,14 +26,12 @@ const Layout = ({ children }) => {
       communityLogo: file(relativePath: { eq: "community-icon.png" }) {
         childImageSharp {
           fluid(maxWidth: 300) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_tracedSVG
           }
         }
       }
     }
   `);
-
-// return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
 
   return (
     <>
