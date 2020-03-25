@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import Img from "gatsby-image"
 
-const Header = ({ siteTitle, siteCommunity, siteLogo }) => (
+const Header = ({ siteTitle, siteCommunity, siteLogo, children }) => (
   <header className="flex flex-col lg:flex-row lg:justify-start text-center lg:text-left items-center py-16">
     <div className="w-32 lg:-ml-40 lg:mr-8 mb-6 lg:mb-0">
       <Img fluid={siteLogo.childImageSharp.fluid} />
@@ -17,11 +17,13 @@ const Header = ({ siteTitle, siteCommunity, siteLogo }) => (
         <span>Relief</span>
       </Link>
     </h1>
+    {children}
   </header>
 );
 
 Header.propTypes = {
   siteCommunity: PropTypes.string,
+  children: PropTypes.node,
 };
 
 Header.defaultProps = {
