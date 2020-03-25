@@ -37,8 +37,7 @@ const IndexPage = ({
       <SEO title="Home" />
       <div className="mb-20">
         <Description 
-          county={site.siteMetadata.county} 
-          state={site.siteMetadata.state}
+          community={site.siteMetadata.community}
         />
         <p className="text-lg mb-8">
           Jump to:{" "}
@@ -100,8 +99,7 @@ export const indexQuery = graphql`
   query IndexQuery {
     site {
       siteMetadata {
-        county
-        state
+        community
       }
     }
     allAirtable(filter: { data: { Approved: { eq: "Yes" } } }) {
