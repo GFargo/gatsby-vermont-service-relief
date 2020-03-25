@@ -1,9 +1,9 @@
-[template.environment]
-	AIRTABLE_API_KEY="keyPX2xJuXSSHSjWH"
-	AIRTABLE_BASE_ID="appTr6bRVZa2AK4SM"
-	AIRTABLE_TABLE_NAME="shrvB3M4dvw7guZFb"
-	AIRTABLE_EMBED_ID="tbl9RDELu5X5VUnvm"
+[context.production]
+	COMMUNITY="Vermont"
+
+[context.burlington]
 	COMMUNITY="Burlington"
+
 
 [build]
 	publish = "public"
