@@ -29,13 +29,18 @@ const SubmitPage = () => {
         </Link>
       </p>
       <h1 className="text-xl font-bold mb-4">Hi there!</h1>
-      <p>
+      <p className="mb-12">
         To submit a fundraiser to be published on the site, please fill out the
         form below. We will review them as they come in and let you know when
         your link has been added to the site.
       </p>
       <AirtableForm id={site.siteMetadata.formId} />
-      <Link to="/">Go back to the homepage</Link>
+      <Link
+        to="/"
+        className="inline-block bg-white hover:bg-gray-100 text-gray-800 font-semibold mt-6 py-2 px-4 border border-gray-400 rounded shadow"
+      >
+         &larr; Go back to the homepage
+      </Link>
     </Layout>
   );
 };

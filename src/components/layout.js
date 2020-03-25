@@ -23,23 +23,22 @@ const Layout = ({ children }) => {
           authorLink
         }
       }
-      communityImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
+      communityLogo: file(relativePath: { eq: "community-icon.png" }) {
         childImageSharp {
           fluid(maxWidth: 300) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_tracedSVG
           }
         }
       }
     }
   `);
 
-// return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
-
   return (
     <>
       <div className="container mx-auto max-w-2xl sm:px-0 px-4">
         <Header
           siteTitle={data.site.siteMetadata.title}
+          siteLogo={data.communityLogo}
           siteCommunity={data.site.siteMetadata.community}
         />
         <main>{children}</main>
