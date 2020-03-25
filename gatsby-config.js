@@ -2,16 +2,16 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`
 });
 
-console.warn('Doing stuff', process.env.AIRTABLE_API_KEY, process.env.AIRTABLE_BASE_ID, process.env.AIRTABLE_TABLE_NAME);
+console.warn('Doing stuff', process.env.COUNTY, process.env.STATE);
 
 module.exports = {
   siteMetadata: {
-    title: process.env.CITY ? `${process.env.CITY} Service Relief` : `${process.env.STATE} Service Relief`,
+    title: process.env.COUNTY !== undefined ? `${process.env.COUNTY} Service Relief` : `${process.env.STATE} Service Relief`,
     description: `A list of local service-industry businesses and their fundraisers to help them get through the local shutdowns.`,
     authorName: `@TraceNetwork`,
     authorLink: `https://tracevt.com`,
     state: process.env.STATE || `{STATE}`,
-    city: process.env.CITY || `{CITY}`,
+    county: process.env.COUNTY || '',
     formId: process.env.AIRTABLE_EMBED_ID
   },
   plugins: [

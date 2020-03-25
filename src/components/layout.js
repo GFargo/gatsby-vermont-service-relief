@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
       site {
         siteMetadata {
           title
-          city
+          county
           state
           authorName
           authorLink
@@ -32,7 +32,7 @@ const Layout = ({ children }) => {
       <div className="container mx-auto max-w-2xl sm:px-0 px-4">
         <Header
           siteTitle={data.site.siteMetadata.title}
-          siteCity={data.site.siteMetadata.city}
+          siteCounty={data.site.siteMetadata.county}
           siteState={data.site.siteMetadata.state}
         />
         <main>{children}</main>

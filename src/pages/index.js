@@ -36,7 +36,10 @@ const IndexPage = ({
     <Layout>
       <SEO title="Home" />
       <div className="mb-20">
-        <Description city={site.siteMetadata.city} />
+        <Description 
+          county={site.siteMetadata.county} 
+          state={site.siteMetadata.state}
+        />
         <p className="text-lg mb-8">
           Jump to:{" "}
           {categories.map((category, idx) => (
@@ -97,7 +100,7 @@ export const indexQuery = graphql`
   query IndexQuery {
     site {
       siteMetadata {
-        city
+        county
         state
       }
     }

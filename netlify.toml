@@ -3,7 +3,7 @@
 	AIRTABLE_BASE_ID="appTr6bRVZa2AK4SM"
 	AIRTABLE_TABLE_NAME="shrvB3M4dvw7guZFb"
 	AIRTABLE_EMBED_ID="tbl9RDELu5X5VUnvm"
-	CITY=""
+	COUNTY=false
 	STATE="Vermont"
 
 [build]
