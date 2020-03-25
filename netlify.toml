@@ -1,11 +1,11 @@
 [template.environment]
-	AIRTABLE_API_KEY="set the airtable api key"
-	AIRTABLE_BASE_ID="set the airtable base id"
-	AIRTABLE_TABLE_NAME="set the airtable table name"
-	AIRTABLE_EMBED_ID="set the airtable embed id"
-	CITY="set your city"
-	STATE="set your state"
+	AIRTABLE_API_KEY="keyPX2xJuXSSHSjWH"
+	AIRTABLE_BASE_ID="appTr6bRVZa2AK4SM"
+	AIRTABLE_TABLE_NAME="shrvB3M4dvw7guZFb"
+	AIRTABLE_EMBED_ID="tbl9RDELu5X5VUnvm"
+	CITY=""
+	STATE="Vermont"
 
 [build]
-  publish = "public"
-  command = "gatsby build"
+	publish = "public"
+	command = "gatsby build"

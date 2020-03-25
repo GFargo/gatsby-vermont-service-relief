@@ -1,11 +1,77 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`
+});
+
+console.warn('Doing stuff', process.env.AIRTABLE_API_KEY, process.env.AIRTABLE_BASE_ID, process.env.AIRTABLE_TABLE_NAME);
+
 module.exports = {
+  siteMetadata: {
+    title: process.env.CITY ? `${process.env.CITY} Service Relief` : `${process.env.STATE} Service Relief`,
+    description: `A list of local service-industry businesses and their fundraisers to help them get through the local shutdowns.`,
+    authorName: `@TraceNetwork`,
+    authorLink: `https://tracevt.com`,
+    state: process.env.STATE || `{STATE}`,
+    city: process.env.CITY || `{CITY}`,
+    formId: process.env.AIRTABLE_EMBED_ID
+  },
   plugins: [
+    `gatsby-plugin-postcss`,
+    `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-theme-service-relief`,
+      resolve: `gatsby-source-airtable`,
       options: {
-        authorName: `some Gatsby folks`,
-        authorLink: `https://twitter.com/gatsbyjs`,
-      },
+        apiKey: process.env.AIRTABLE_API_KEY,
+        tables: [
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            tableName: process.env.AIRTABLE_TABLE_NAME
+          }
+        ]
+      }
     },
-  ],
-}
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`
+      }
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `gatsby-starter-default`,
+        short_name: `starter`,
+        start_url: `/`,
+        background_color: `#663399`,
+        theme_color: `#663399`,
+        display: `minimal-ui`,
+        icon: require.resolve(`./src/images/heart.png`)
+      }
+    },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Bungee`
+          }
+        ]
+      }
+    },
+    `gatsby-plugin-preact`
+    // this seems to break our CSS
+    // {
+    //   resolve: `gatsby-plugin-purgecss`,
+    //   options: {
+    //     printRejected: process.env.gatsby_log_level === `verbose`,
+    //     develop: process.env.NODE_ENV !== `production`,
+    //     tailwind: true,
+    //   },
+    // },
+    // this (optional) plugin enables Progressive Web App + Offline functionality
+    // To learn more, visit: https://gatsby.dev/offline
+    // `gatsby-plugin-offline`,
+  ]
+};
