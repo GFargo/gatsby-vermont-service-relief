@@ -48,7 +48,7 @@ const Layout = ({ children }) => {
           </a>
           .{" "}
           <a className="text-blue-600" href="https://www.servicerelief.us/">
-            Build one for your city.
+            Build one for your community.
           </a>
         </footer>
       </div>
