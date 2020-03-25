@@ -2,20 +2,18 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`
 });
 
-console.warn('Doing stuff', process.env.COUNTY, process.env.STATE);
-
 module.exports = {
   siteMetadata: {
-    title: process.env.COUNTY !== undefined ? `${process.env.COUNTY} Service Relief` : `${process.env.STATE} Service Relief`,
+    title: process.env.COMMUNITY ? `${process.env.COMMUNITY} Service Relief` : `{COMMUNITY} Service Relief`,
     description: `A list of local service-industry businesses and their fundraisers to help them get through the local shutdowns.`,
     authorName: `@TraceNetwork`,
     authorLink: `https://tracevt.com`,
-    state: process.env.STATE || `{STATE}`,
-    county: process.env.COUNTY || '',
+    community: process.env.COMMUNITY || `{COMMUNITY}`,
     formId: process.env.AIRTABLE_EMBED_ID
   },
   plugins: [
     `gatsby-plugin-postcss`,
+    'gatsby-plugin-webpack-size',
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-airtable`,
@@ -60,18 +58,35 @@ module.exports = {
         ]
       }
     },
-    `gatsby-plugin-preact`
-    // this seems to break our CSS
-    // {
-    //   resolve: `gatsby-plugin-purgecss`,
-    //   options: {
-    //     printRejected: process.env.gatsby_log_level === `verbose`,
-    //     develop: process.env.NODE_ENV !== `production`,
-    //     tailwind: true,
-    //   },
-    // },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-preload-fonts`,
+    `gatsby-plugin-preact`,
+    {
+      resolve: `gatsby-plugin-purgecss`,
+      options: {
+        printRejected: process.env.gatsby_log_level === `verbose`,
+        develop: process.env.NODE_ENV !== `production`,
+        purgeOnly: ['src/css/style.css'],
+        tailwind: true,
+      },
+    },
+    `gatsby-plugin-offline`,
+    {
+      resolve: 'gatsby-plugin-netlify-cache',
+      options: {
+        extraDirsToCache: ['public/static', 'public/google-fonts'],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-netlify`,
+      options: {
+        headers: {}, // option to add more headers. `Link` headers are transformed by the below criteria
+        allPageHeaders: [], // option to add headers for all pages. `Link` headers are transformed by the below criteria
+        mergeSecurityHeaders: true, // boolean to turn off the default security headers
+        mergeLinkHeaders: true, // boolean to turn off the default gatsby js headers
+        mergeCachingHeaders: true, // boolean to turn off the default caching headers
+        transformHeaders: (headers, path) => headers, // optional transform for manipulating headers under each path (e.g.sorting), etc.
+        generateMatchPathRewrites: true, // boolean to turn off automatic creation of redirect rules for client only paths
+      },
+    },
   ]
 };

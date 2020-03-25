@@ -2,12 +2,11 @@ import { Link } from "gatsby";
 import PropTypes from "prop-types";
 import React from "react";
 
-const Header = ({ siteCounty, siteState }) => (
+const Header = ({ siteCommunity }) => (
   <header>
-    {console.log(siteCounty)}
     <h1 className="font-heading text-5xl py-16 leading-none">
       <Link to="/">
-        <span>{!!siteCounty.length ? `${siteCounty} County` : siteState}</span>
+        <span>{siteCommunity? siteCommunity : '{COMMUNITY}'}</span>
         <br />
         <span>Service</span>
         <br />
@@ -18,15 +17,11 @@ const Header = ({ siteCounty, siteState }) => (
 );
 
 Header.propTypes = {
-  siteTitle: PropTypes.string,
-  siteCounty: PropTypes.string,
-  siteState: PropTypes.string
+  siteCommunity: PropTypes.string,
 };
 
 Header.defaultProps = {
-  siteTitle: ``,
-  siteCounty: ``,
-  siteState: ``
+  siteCommunity: ``,
 };
 
 export default Header;

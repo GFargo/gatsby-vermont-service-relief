@@ -18,22 +18,29 @@ const Layout = ({ children }) => {
       site {
         siteMetadata {
           title
-          county
-          state
+          community
           authorName
           authorLink
         }
       }
+      communityImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 300) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
     }
   `);
+
+// return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
 
   return (
     <>
       <div className="container mx-auto max-w-2xl sm:px-0 px-4">
         <Header
           siteTitle={data.site.siteMetadata.title}
-          siteCounty={data.site.siteMetadata.county}
-          siteState={data.site.siteMetadata.state}
+          siteCommunity={data.site.siteMetadata.community}
         />
         <main>{children}</main>
         <footer className="text-sm pt-10">
