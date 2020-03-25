@@ -42,20 +42,23 @@ const Layout = ({ children }) => {
           siteCommunity={data.site.siteMetadata.community}
         />
         <main>{children}</main>
-        <footer className="text-sm pt-10">
-          &copy; {new Date().getFullYear()} &amp; built with
-          {` `}
-          <a className="text-blue-600" href="https://www.gatsbyjs.org">
-            Gatsby
-          </a>{" "}
-          by{" "}
-          <a className="text-blue-600" href={data.site.siteMetadata.authorLink}>
-            {data.site.siteMetadata.authorName}
-          </a>
-          .{" "}
-          <a className="text-blue-600" href="https://www.servicerelief.us/">
-            Build one for your community.
-          </a>
+        <footer className="text-sm pt-10 pb-3 w-full flex flex-row">
+          <div className="justify-start">
+            &copy; {new Date().getFullYear()} built with
+            {` `}
+            <a className="text-blue-600" href="https://www.gatsbyjs.org">
+              Gatsby
+            </a>
+            {" "}by{" "}
+            <a className="text-blue-600" href={data.site.siteMetadata.authorLink}>
+              {data.site.siteMetadata.authorName}
+            </a>.
+          </div>
+          <div className="ml-auto">
+            <a className="text-blue-600" href="https://www.servicerelief.us/">
+              Build one for your community.
+            </a>
+          </div>
         </footer>
       </div>
     </>

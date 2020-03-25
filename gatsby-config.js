@@ -6,6 +6,7 @@ module.exports = {
   siteMetadata: {
     title: process.env.COMMUNITY ? `${process.env.COMMUNITY} Service Relief` : `{COMMUNITY} Service Relief`,
     description: `A list of local service-industry businesses and their fundraisers to help them get through the local shutdowns.`,
+    siteUrl: 'https://vermontservicerelief.com',
     authorName: `@TraceNetwork`,
     authorLink: `https://tracevt.com`,
     community: process.env.COMMUNITY || `{COMMUNITY}`,

@@ -18,6 +18,7 @@ function SEO({ description, lang, meta, title }) {
           siteMetadata {
             title
             description
+            siteUrl
             authorName
           }
         }
@@ -34,6 +35,7 @@ function SEO({ description, lang, meta, title }) {
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
+      
       meta={[
         {
           name: `description`,
@@ -45,6 +47,18 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `og:description`,
+          content: metaDescription
+        },
+        {
+          property: `og:image`,
+          content: `${site.siteMetadata.siteUrl}/social.png`
+        },
+        {
+          property: `og:image:width`,
+          content: metaDescription
+        },
+        {
+          property: `og:image:height`,
           content: metaDescription
         },
         {
