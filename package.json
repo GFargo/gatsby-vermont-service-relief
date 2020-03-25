@@ -31,6 +31,7 @@
     "gatsby-plugin-webpack-size": "^1.0.0",
     "gatsby-source-airtable": "^2.1.0",
     "gatsby-source-filesystem": "^2.1.57",
+    "gatsby-source-mathdroid-covid19": "^0.2.0",
     "gatsby-transformer-sharp": "^2.3.19",
     "limax": "^2.0.0",
     "preact": "^10.3.4",
