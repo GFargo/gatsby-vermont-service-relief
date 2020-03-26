@@ -1,22 +1,18 @@
 import React, { useState } from "react";
-import { useStaticQuery, graphql } from "gatsby";
 import Popover from 'react-tiny-popover'
+import axios from "axios";
+import { useQuery } from "react-query";
+import Loader from 'react-loader-spinner'
+
+const getStats = async () => {
+  const { data } = await axios.get(
+    "https://spreadsheets.google.com/feeds/cells/1xSZHv2emLxkBFViORfG42SYpWtwM-ZbwrQ7CfHX5WXQ/1/public/values?alt=json"
+  );
+  return data;
+};
 
 const LocalStats = () => {
-  const data = useStaticQuery(graphql`
-    query LocalCovidStatsQuery {
-      allGoogleSheetStatsRow {
-        nodes {
-          label
-          value
-        }
-      }
-    }
-  `);
-
-  const {
-    nodes,
-  } = data.allGoogleSheetStatsRow;
+  const { status, data, error } = useQuery("stats", getStats);
 
   const swapLabel = (label) => {
     if(label.includes('Positive test results')) {
@@ -39,6 +35,23 @@ const LocalStats = () => {
 
   const [isOpen, setState] = useState(false);
   
+  let rows = [];
+
+  const { entry } = data ? data.feed : {};
+
+  if(entry !== undefined) {   
+    // Increment for loop by two to jump to next row on sheet.
+    for (let index = 2; index < entry.length; index+=2) {
+      rows = [
+        ...rows,
+        {
+          label: swapLabel(entry[index].content["$t"]),
+          value: entry[index + 1].content["$t"],
+        }
+      ]
+    }
+  }
+
   return (
       <Popover
         isOpen={isOpen}
@@ -47,18 +60,33 @@ const LocalStats = () => {
         onClickOutside={() => setState(false)}
         content={({ position, nudgedLeft, nudgedTop, targetRect, popoverRect }) => (
           <div className="bg-black text-white rounded p-6" style={{backgroundColor: '#205027'}}>
-            <ul className="flex flex-col mb-3">
-              {nodes.map((node, index) => (
-                <li 
-                  key={index.toString()}
-                  className={`flex flex-row justify-between py-1 ${nodes.length > index + 1 ? 'border-b' : ''} border-dotted`}
-                >
-                  {console.log(nodes.length, index)}
-                  <span className="mr-3 font-semibold">{swapLabel(node.label)}:</span>
-                  <span>{node.value}</span>
-                </li>
-              ))}
-            </ul>
+            {status === "loading" ? (
+              <div className="w-16 mx-auto py-3 text-center">
+                <Loader
+                  type="Bars"
+                  color="#Fbb034"
+                  height={64}
+                  width={64}
+                />
+             </div>
+            ) : status === "error" ? (
+              <span>Error: {error.message}</span>
+            ) : (
+              <>
+                <ul className="flex flex-col mb-3">
+                  {rows.map((row, index) => (
+                    <li 
+                      key={index.toString()}
+                      className={`flex flex-row justify-between py-1 ${rows.length > index + 1 ? 'border-b' : ''} border-dotted`}
+                    >
+                      <span className="mr-3 font-semibold">{swapLabel(row.label)}:</span>
+                      <span>{row.value}</span>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+
             <div style={{color: '#Fbb034'}} className="font-bold">
               <p className="text-xs">Data from <a className="underline" href="https://www.healthvermont.gov/response/infectious-disease/2019-novel-coronavirus">VT Public Health</a></p>
               <p className="flex flex-col text-xs">Updated daily by 1:00 p.m</p>
