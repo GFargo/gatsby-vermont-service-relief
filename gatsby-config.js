@@ -15,6 +15,8 @@ const googleServiceJWT = {
   "client_x509_cert_url": process.env.GSERVICE_CLIENT_CERT_URL
 };
 
+console.log(googleServiceJWT)
+
 module.exports = {
   siteMetadata: {
     title: process.env.COMMUNITY ? `${process.env.COMMUNITY} Service Relief` : `{COMMUNITY} Service Relief`,
