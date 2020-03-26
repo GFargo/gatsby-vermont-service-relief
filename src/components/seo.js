@@ -46,6 +46,10 @@ function SEO({ description, lang, meta, title }) {
           content: title
         },
         {
+          property: `og:url`,
+          content: `${site.siteMetadata.siteUrl}`
+        },
+        {
           property: `og:description`,
           content: metaDescription
         },
@@ -54,20 +58,16 @@ function SEO({ description, lang, meta, title }) {
           content: `${site.siteMetadata.siteUrl}/social.png`
         },
         {
-          property: `og:image:width`,
-          content: metaDescription
-        },
-        {
-          property: `og:image:height`,
-          content: metaDescription
-        },
-        {
           property: `og:type`,
           content: `website`
         },
         {
           name: `twitter:card`,
           content: `summary`
+        },
+        {
+          property: `twitter:image`,
+          content: `${site.siteMetadata.siteUrl}/social.png`
         },
         {
           name: `twitter:creator`,
