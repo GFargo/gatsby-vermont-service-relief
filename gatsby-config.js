@@ -2,20 +2,20 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`
 });
 
-const googleServiceJWT = {
+const googleServiceJWT = `{
   "type": "service_account",
-  "project_id": process.env.GSERVICE_PROJECT_ID,
-  "private_key_id": process.env.GSERVICE_KEY_ID,
-  "private_key": process.env.GSERVICE_PRIVATE_KEY,
-  "client_email": process.env.GSERVICE_CLIENT_EMAIL,
-  "client_id": process.env.GSERVICE_CLIENT_ID,
+  "project_id": "${process.env.GSERVICE_PROJECT_ID}",
+  "private_key_id": "${process.env.GSERVICE_KEY_ID}",
+  "private_key": "${process.env.GSERVICE_PRIVATE_KEY}",
+  "client_email": "${process.env.GSERVICE_CLIENT_EMAIL}",
+  "client_id": "${process.env.GSERVICE_CLIENT_ID}",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
   "token_uri": "https://oauth2.googleapis.com/token",
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": process.env.GSERVICE_CLIENT_CERT_URL
-};
+  "client_x509_cert_url": "${process.env.GSERVICE_CLIENT_CERT_URL}"
+}`;
 
-console.log(JSON.stringify(googleServiceJWT))
+console.log(googleServiceJWT)
 
 module.exports = {
   siteMetadata: {
@@ -54,7 +54,7 @@ module.exports = {
       options: {
         spreadsheetId: '1xSZHv2emLxkBFViORfG42SYpWtwM-ZbwrQ7CfHX5WXQ',
         worksheetTitle: 'Stats',
-        credentials: JSON.stringify(googleServiceJWT),
+        credentials: googleServiceJWT,
       }
     },
     {
