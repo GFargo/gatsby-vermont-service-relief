@@ -4,7 +4,6 @@
 [context.burlington]
 	COMMUNITY="Burlington"
 
-
 [build]
 	publish = "public"
-	command = "gatsby build"
+	command = "yarn build"
