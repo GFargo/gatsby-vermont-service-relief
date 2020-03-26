@@ -29,6 +29,12 @@ module.exports = {
       }
     },
     {
+      resolve: 'gatsby-source-mathdroid-covid19',
+      options: {
+        countries: [{ iso2: 'US' }],
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,

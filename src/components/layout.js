@@ -10,6 +10,7 @@ import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
 
 import Header from "./header";
+import LocalStats from './local-stats';
 import "../css/global.css";
 
 const Layout = ({ children }) => {
@@ -40,7 +41,12 @@ const Layout = ({ children }) => {
           siteTitle={data.site.siteMetadata.title}
           siteLogo={data.communityLogo}
           siteCommunity={data.site.siteMetadata.community}
-        />
+        >
+            <div className="w-32 ml-auto">
+              <LocalStats/>
+            </div>
+        </Header>
+
         <main>{children}</main>
         <footer className="text-sm pt-10 pb-3 w-full flex flex-row">
           <div className="justify-start">
