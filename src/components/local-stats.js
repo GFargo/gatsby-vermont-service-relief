@@ -38,8 +38,7 @@ const LocalStats = () => {
   }
 
   const [isOpen, setState] = useState(false);
-
-  console.log("LocalStats", data.allGoogleSheetStatsRow);
+  
   return (
       <Popover
         isOpen={isOpen}
