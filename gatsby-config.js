@@ -15,7 +15,7 @@ const googleServiceJWT = {
   "client_x509_cert_url": process.env.GSERVICE_CLIENT_CERT_URL
 };
 
-console.log(googleServiceJWT)
+console.log(JSON.stringify(googleServiceJWT))
 
 module.exports = {
   siteMetadata: {
@@ -54,7 +54,7 @@ module.exports = {
       options: {
         spreadsheetId: '1xSZHv2emLxkBFViORfG42SYpWtwM-ZbwrQ7CfHX5WXQ',
         worksheetTitle: 'Stats',
-        credentials: googleServiceJWT,
+        credentials: JSON.stringify(googleServiceJWT),
       }
     },
     {
