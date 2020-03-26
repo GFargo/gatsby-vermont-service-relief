@@ -35,6 +35,14 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-source-google-sheets',
+      options: {
+          spreadsheetId: '1xSZHv2emLxkBFViORfG42SYpWtwM-ZbwrQ7CfHX5WXQ',
+          worksheetTitle: 'Stats',
+          credentials: require('./src/config/sov-covid-19-stats-64efa14b0b93.json')
+      }
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,

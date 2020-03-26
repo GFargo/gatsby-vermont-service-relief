@@ -42,7 +42,7 @@ const Layout = ({ children }) => {
           siteLogo={data.communityLogo}
           siteCommunity={data.site.siteMetadata.community}
         >
-            <div className="w-32 ml-auto">
+            <div className="ml-auto">
               <LocalStats/>
             </div>
         </Header>
